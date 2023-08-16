@@ -6,8 +6,56 @@
 const caesarModule = (function () {
   // you can add any code you want within this function scope
 
+  const alphabet = "abcdefghijklmnopqrstuvwxyz"
+
   function caesar(input, shift, encode = true) {
-    // your solution code here
+
+    if (!shift || shift < -25 || shift > 25 || shift === 0) {
+      return false;
+    }
+
+    let result = "";
+
+    for (let i=0; i < input.length; i++ ) {
+
+      const letter = input[i].toLowerCase();
+      
+      if (!alphabet.includes(letter)){
+        result += letter
+      }
+
+      else {
+      const alphaNum = alphabet.indexOf(letter);
+      
+      if (encode) {
+
+        const shiftedNum = (alphaNum + shift%26)%26
+        if (shiftedNum >= 0) {
+          const newLetter = alphabet[shiftedNum];
+          result += newLetter;
+        }
+        else {
+          const newLetter = alphabet[26+shiftedNum];
+          result += newLetter;
+        }
+       
+      }
+      else {
+        const shiftedNum = (alphaNum - shift%26)%26;
+        if (shiftedNum >= 0){
+          const newLetter = alphabet[shiftedNum];
+          result += newLetter;
+        }
+        else {
+          const newLetter = alphabet[26+shiftedNum];
+          result += newLetter;
+
+        }
+      }
+      
+      }
+    }
+    return result;
   }
 
   return {
