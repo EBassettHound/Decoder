@@ -25,11 +25,10 @@ const caesarModule = (function () {
       }
 
       else {
-      const alphaNum = alphabet.indexOf(letter);
-      
-      if (encode) {
+        const alphaNum = alphabet.indexOf(letter);
+        let newShift = shift*(encode ? 1: -1)
+        const shiftedNum = (alphaNum + newShift%26)%26
 
-        const shiftedNum = (alphaNum + shift%26)%26
         if (shiftedNum >= 0) {
           const newLetter = alphabet[shiftedNum];
           result += newLetter;
@@ -38,21 +37,6 @@ const caesarModule = (function () {
           const newLetter = alphabet[26+shiftedNum];
           result += newLetter;
         }
-       
-      }
-      else {
-        const shiftedNum = (alphaNum - shift%26)%26;
-        if (shiftedNum >= 0){
-          const newLetter = alphabet[shiftedNum];
-          result += newLetter;
-        }
-        else {
-          const newLetter = alphabet[26+shiftedNum];
-          result += newLetter;
-
-        }
-      }
-      
       }
     }
     return result;
