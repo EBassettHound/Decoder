@@ -6,8 +6,37 @@
 const substitutionModule = (function () {
   // you can add any code you want within this function scope
 
-  function substitution(input, alphabet, encode = true) {
-    // your solution code here
+  const realAlphabet = "abcdefghijklmnopqrstuvwxyz";
+  function substitution(input, alphabet = "", encode = true) {
+    if (alphabet.length !== 26 || new Set(alphabet).size !== alphabet.length || alphabet.length === 0 )return false;
+    const translator = {}
+    const result = []
+    if (!encode){
+      for (let i =0; i< realAlphabet.length; i++){
+        translator[alphabet[i]] = realAlphabet[i];
+      }
+      for (let i=0; i < input.length; i++) {
+        if (input[i] === " "){
+          result.push(input[i]);
+          i++
+        }
+        result.push(translator[input[i]]);  
+      }
+    
+    }
+    else {
+      for (let i =0; i< realAlphabet.length; i++){
+        translator[realAlphabet[i]] = alphabet[i];
+      }
+      for (let i=0; i < input.length; i++) {
+        if (input[i] === " "){
+          result.push(input[i]);
+          i++
+        }
+        result.push(translator[input[i]]);  
+      }
+    }
+    return result.join("");
   }
 
   return {
