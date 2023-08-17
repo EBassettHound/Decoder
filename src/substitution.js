@@ -22,7 +22,6 @@ const substitutionModule = (function () {
         }
         result.push(translator[input[i]]);  
       }
-    
     }
     else {
       for (let i =0; i< realAlphabet.length; i++){
