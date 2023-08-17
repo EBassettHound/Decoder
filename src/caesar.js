@@ -27,6 +27,7 @@ const caesarModule = (function () {
       else {
         const alphaNum = alphabet.indexOf(letter);
         let newShift = shift*(encode ? 1: -1)
+
         const shiftedNum = (alphaNum + newShift%26)%26
 
         if (shiftedNum >= 0) {
