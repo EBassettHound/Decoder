@@ -11,28 +11,29 @@ const substitutionModule = (function () {
     if (alphabet.length !== 26 || new Set(alphabet).size !== alphabet.length || alphabet.length === 0 )return false;
     const translator = {}
     const result = []
+    let inputLower = input.toLowerCase()
     if (!encode){
       for (let i =0; i< realAlphabet.length; i++){
         translator[alphabet[i]] = realAlphabet[i];
       }
-      for (let i=0; i < input.length; i++) {
-        if (input[i] === " "){
-          result.push(input[i]);
+      for (let i=0; i < inputLower.length; i++) {
+        if (inputLower[i] === " "){
+          result.push(inputLower[i]);
           i++
         }
-        result.push(translator[input[i]]);  
+        result.push(translator[inputLower[i]]);  
       }
     }
     else {
       for (let i =0; i< realAlphabet.length; i++){
         translator[realAlphabet[i]] = alphabet[i];
       }
-      for (let i=0; i < input.length; i++) {
-        if (input[i] === " "){
-          result.push(input[i]);
+      for (let i=0; i < inputLower.length; i++) {
+        if (inputLower[i] === " "){
+          result.push(inputLower[i]);
           i++
         }
-        result.push(translator[input[i]]);  
+        result.push(translator[inputLower[i]]);  
       }
     }
     return result.join("");
